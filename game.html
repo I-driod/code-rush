@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeCrush — Game</title>
+  <meta name="description" content="CodeCrush game screen — fill in the blank and race the falling bricks!">
+  <link rel="stylesheet" href="style/game.css">
+  <script>
+    (function() {
+      const saved = localStorage.getItem('cc_theme');
+      const theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ── TOP HUD ──────────────────────────────────────────────── -->
+  <header class="hud" role="banner">
+
+    <!-- Brand -->
+    <span class="hud-logo" aria-label="CodeCrush">⚡ CodeCrush</span>
+    <div class="hud-divider" aria-hidden="true"></div>
+
+    <!-- Player -->
+    <div class="hud-player">
+      <span aria-hidden="true">👾</span>
+      <span id="playerName" class="hud-player-name" aria-label="Player name">—</span>
+    </div>
+
+    <!-- Course -->
+    <span id="courseBadge" class="course-badge" aria-label="Current course"></span>
+
+    <!-- Combo (hidden until active) -->
+    <span id="comboDisplay" class="combo-display" style="display:none" aria-live="polite" aria-label="Combo streak"></span>
+
+    <!-- Game timer -->
+    <div class="hud-timer" aria-label="Game time">
+      <span aria-hidden="true">⏱️</span>
+      <span id="gameTimer" class="hud-timer-val" aria-live="off">00:00</span>
+    </div>
+
+    <!-- Score -->
+    <div class="hud-score" aria-label="Current score">
+      <span aria-hidden="true">🏆</span>
+      <span id="scoreValue" class="hud-score-val" aria-live="polite">0</span>
+    </div>
+
+    <div class="hud-divider" aria-hidden="true"></div>
+
+    <!-- Brick count -->
+    <div class="hud-timer" aria-label="Bricks">
+      <span aria-hidden="true">🧱</span>
+      <span id="brickCount" class="hud-timer-val" style="font-size:0.78rem;color:#8892a0">0/8</span>
+    </div>
+
+    <!-- Theme toggle -->
+    <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle theme">☀️ Light</button>
+
+    <!-- MDN Doc link (set by game.js) -->
+    <a
+      id="docLink"
+      class="hud-doc-link"
+      href="#"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Open MDN documentation"
+    >
+      <span aria-hidden="true">📖</span> Docs ↗
+    </a>
+
+    <!-- End Game button -->
+    <button id="endGameBtn" class="hud-end-btn" type="button" aria-label="End game">
+      <span aria-hidden="true">⏹</span> End Game
+    </button>
+
+    <!-- Progress bar -->
+    <div class="progress-bar" role="progressbar" aria-label="Question progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+      <div id="progressFill" class="progress-fill"></div>
+    </div>
+
+  </header>
+
+  <!-- ── FEEDBACK BANNER ──────────────────────────────────────── -->
+  <div id="feedbackBanner" class="feedback-banner" role="status" aria-live="polite">
+    <span id="feedbackText"></span>
+    <small id="explanationText" class="explanation-text"></small>
+  </div>
+
+  <!-- ── MAIN GAME AREA ───────────────────────────────────────── -->
+  <div class="game-layout" id="gameLayout">
+
+    <!-- ── LEFT: Code Panel ────────────────────────────────────── -->
+    <section class="code-panel" aria-labelledby="questionTitle">
+
+      <!-- Question meta -->
+      <div class="question-header">
+        <div class="question-meta">
+          <span id="questionNum" class="question-num" aria-label="Question number">1 / 20</span>
+          <span id="questionTopic" class="question-topic" aria-label="Topic"></span>
+        </div>
+        <h1 id="questionTitle" class="question-title">Loading question…</h1>
+      </div>
+
+      <!-- Timer row -->
+      <div class="timer-row" aria-label="Time remaining">
+        <span class="timer-label" aria-hidden="true">⏳</span>
+        <div class="timer-track" role="progressbar" aria-label="Time bar" aria-valuemin="0" aria-valuemax="100">
+          <div id="timerBar" class="timer-fill"></div>
+        </div>
+        <span id="timerSecs" class="timer-secs" aria-live="off">30</span>
+
+        <span class="bonus-label" aria-hidden="true">⚡ Bonus:</span>
+        <div class="bonus-track" role="progressbar" aria-label="Bonus bar">
+          <div id="bonusMeter" class="bonus-fill"></div>
+        </div>
+        <span id="bonusValue" class="bonus-val" aria-live="polite">+200</span>
+      </div>
+
+      <!-- Code Editor Window -->
+      <div class="editor-window">
+        <div class="editor-tab-bar">
+          <div class="editor-dots" aria-hidden="true">
+            <span class="dot-red"></span>
+            <span class="dot-yellow"></span>
+            <span class="dot-green"></span>
+          </div>
+          <div class="editor-tab active" id="editorTab">
+            <span class="tab-icon" id="editorTabIcon">📄</span>
+            <span class="tab-label" id="editorTabLabel">index.html</span>
+          </div>
+        </div>
+
+        <div class="editor-body">
+          <div class="line-gutter" id="lineGutter" aria-hidden="true"></div>
+          <div class="code-snippet-wrap" role="main">
+            <pre class="code-pre"><code id="codeSnippet" class="code-snippet" aria-label="Code snippet with blank to fill"></code></pre>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ── RIGHT: Preview Panel ─────────────────────────────────── -->
+    <section class="preview-panel" aria-labelledby="previewTitle">
+
+      <div class="preview-header">
+        <h2 id="previewTitle" class="preview-header-title">
+          <div class="preview-dot" aria-hidden="true"></div>
+          Live Preview
+        </h2>
+        <span id="previewStageInfo" class="preview-stage-info" aria-live="polite">Stage 1 / 5</span>
+      </div>
+
+      <!-- Sandboxed live preview -->
+      <iframe
+        id="previewFrame"
+        class="preview-frame"
+        sandbox="allow-scripts allow-same-origin"
+        title="Live preview of what you are building"
+        aria-label="Live code preview"
+      ></iframe>
+
+    </section>
+
+    <!-- ── ANSWER OPTIONS (bottom, spans both columns) ─────────── -->
+    <div class="answers-panel" role="region" aria-label="Answer options">
+      <p class="answers-hint" aria-hidden="true">
+        Click an answer or press <kbd>A</kbd> <kbd>B</kbd> <kbd>C</kbd> <kbd>D</kbd>
+      </p>
+      <div id="optionsGrid" class="options-grid" role="group" aria-label="Answer choices"></div>
+    </div>
+
+  </div><!-- /.game-layout -->
+
+  <!-- ── BRICK TRACK ──────────────────────────────────────────── -->
+  <footer class="brick-zone" aria-label="Brick wall">
+    <div class="brick-zone-header">
+      <span class="brick-zone-label">
+        <span aria-hidden="true">🧱</span>
+        Brick Wall — Answer fast to destroy incoming bricks!
+      </span>
+      <span id="brickCount2" class="brick-count-display" aria-live="polite"></span>
+    </div>
+    <div id="brickTrack" class="brick-track" aria-label="Horizontal brick track" role="img"></div>
+  </footer>
+
+  <!-- ── GAME OVER OVERLAY ────────────────────────────────────── -->
+  <div id="overlayWrap" class="overlay-wrap hidden" role="dialog" aria-modal="true" aria-labelledby="overlayTitle">
+    <div class="overlay-card">
+      <span class="overlay-icon" id="overlayIcon" aria-hidden="true">🎉</span>
+      <h2 id="overlayTitle" class="overlay-title">Game Over</h2>
+      <p id="overlaySubtitle" class="overlay-subtitle"></p>
+
+      <div class="overlay-stats" role="list">
+        <div class="stat-box" role="listitem">
+          <span id="overlayScore" class="stat-val val-score">0</span>
+          <span class="stat-label">Final Score</span>
+        </div>
+        <div class="stat-box" role="listitem">
+          <span id="overlayTime" class="stat-val val-time">00:00</span>
+          <span class="stat-label">Time Played</span>
+        </div>
+        <div class="stat-box" role="listitem">
+          <span id="overlayCorrect" class="stat-val val-correct">0</span>
+          <span class="stat-label">Correct ✓</span>
+        </div>
+        <div class="stat-box" role="listitem">
+          <span id="overlayWrong" class="stat-val val-wrong">0</span>
+          <span class="stat-label">Missed ✗</span>
+        </div>
+      </div>
+
+      <!-- Post-game review & improvement advice -->
+      <div id="overlayReview" class="overlay-review"></div>
+
+      <div class="overlay-actions">
+        <button id="replayBtn" class="btn-replay" type="button">
+          🔄 Play Again
+        </button>
+        <button id="homeBtn" class="btn-home" type="button">
+          🏠 Home
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts: load in dependency order -->
+  <script src="js/questions.js"></script>
+  <script src="js/preview.js"></script>
+  <script src="js/game.js"></script>
+
+</body>
+</html>

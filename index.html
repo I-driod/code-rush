@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeCrush — Learn HTML, CSS & JavaScript</title>
+  <meta name="description" content="CodeCrush: A fun fill-in-the-blank coding game for HTML, CSS, and JavaScript. Race the falling bricks and master web development!">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="stylesheet" href="style/main.css">
+  <script>
+    (function() {
+      const saved = localStorage.getItem('cc_theme');
+      const theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- Animated particle background -->
+  <canvas id="particleCanvas" aria-hidden="true"></canvas>
+
+  <main class="home-wrapper">
+
+    <!-- Logo & Theme Toggle -->
+    <div class="logo-bar">
+      <div class="logo-brand">
+        <span class="logo-icon" aria-hidden="true">⚡</span>
+        <span class="logo-text">Code<span>Crush</span></span>
+        <span class="logo-version">STEM EDITION</span>
+      </div>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle theme">☀️ Light</button>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero-block" aria-labelledby="heroHeading">
+      <h1 id="heroHeading">
+        Master <span class="grad">Web Dev</span><br>
+        One Line at a Time
+      </h1>
+      <p class="hero-tagline" id="heroTagline" aria-live="polite">Fill in the blanks. Crush the code.</p>
+    </section>
+
+    <!-- Main form card -->
+    <div class="main-card" role="form" aria-label="Game Setup">
+
+      <!-- ── Player Name ── -->
+      <div class="input-group">
+        <label class="field-label" for="playerName">
+          <span aria-hidden="true">👾</span> Your Name
+        </label>
+        <div class="input-wrap">
+          <span class="input-icon" aria-hidden="true">✏️</span>
+          <input
+            class="text-input"
+            type="text"
+            id="playerName"
+            name="playerName"
+            maxlength="24"
+            autocomplete="off"
+            placeholder="e.g. Alex Developer"
+            aria-describedby="nameError"
+            spellcheck="false"
+          >
+        </div>
+        <p class="error-msg hidden" id="nameError" role="alert">
+          <span aria-hidden="true">⚠️</span> Please enter your name to continue.
+        </p>
+      </div>
+
+      <!-- ── Course Select ── -->
+      <div class="course-group">
+        <p class="field-label" id="courseLabel">
+          <span aria-hidden="true">📚</span> Choose Your Course
+        </p>
+        <p class="error-msg hidden" id="courseError" role="alert" style="margin-bottom:10px">
+          <span aria-hidden="true">⚠️</span> Please select a course to continue.
+        </p>
+        <div class="course-cards" role="radiogroup" aria-labelledby="courseLabel">
+
+          <!-- HTML -->
+          <button
+            class="course-card html"
+            data-course="html"
+            role="radio"
+            aria-checked="false"
+            tabindex="0"
+            id="courseHtml"
+          >
+            <span class="selected-check" aria-hidden="true">✅</span>
+            <span class="course-icon" aria-hidden="true">🧱</span>
+            <span class="course-name">HTML</span>
+            <span class="course-desc">Tags, elements &amp; semantic structure</span>
+            <a
+              class="course-doc-link"
+              href="https://developer.mozilla.org/en-US/docs/Web/HTML"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open MDN HTML Documentation in new tab"
+              onclick="event.stopPropagation()"
+            >📖 MDN Docs ↗</a>
+          </button>
+
+          <!-- CSS -->
+          <button
+            class="course-card css"
+            data-course="css"
+            role="radio"
+            aria-checked="false"
+            tabindex="0"
+            id="courseCss"
+          >
+            <span class="selected-check" aria-hidden="true">✅</span>
+            <span class="course-icon" aria-hidden="true">🎨</span>
+            <span class="course-name">CSS</span>
+            <span class="course-desc">Styling, layout &amp; animations</span>
+            <a
+              class="course-doc-link"
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open MDN CSS Documentation in new tab"
+              onclick="event.stopPropagation()"
+            >📖 MDN Docs ↗</a>
+          </button>
+
+          <!-- JavaScript -->
+          <button
+            class="course-card js"
+            data-course="javascript"
+            role="radio"
+            aria-checked="false"
+            tabindex="0"
+            id="courseJs"
+          >
+            <span class="selected-check" aria-hidden="true">✅</span>
+            <span class="course-icon" aria-hidden="true">⚡</span>
+            <span class="course-name">JavaScript</span>
+            <span class="course-desc">Variables, DOM &amp; functions</span>
+            <a
+              class="course-doc-link"
+              href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open MDN JavaScript Documentation in new tab"
+              onclick="event.stopPropagation()"
+            >📖 MDN Docs ↗</a>
+          </button>
+
+        </div>
+      </div>
+
+      <!-- ── Start ── -->
+      <button class="start-btn" id="startBtn" type="button">
+        <span aria-hidden="true">🚀</span>
+        Start Game
+      </button>
+
+    </div>
+
+    <!-- Feature pills -->
+    <div class="feature-pills" role="list">
+      <span class="pill" role="listitem"><span aria-hidden="true">⏱️</span> Time Bonus Scoring</span>
+      <span class="pill" role="listitem"><span aria-hidden="true">🧱</span> Falling Bricks</span>
+      <span class="pill" role="listitem"><span aria-hidden="true">👁️</span> Live Code Preview</span>
+      <span class="pill" role="listitem"><span aria-hidden="true">🔥</span> Combo Multiplier</span>
+    </div>
+
+  </main>
+
+  <script src="js/home.js"></script>
+</body>
+</html>

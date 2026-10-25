@@ -1,0 +1,489 @@
+/* =============================================================
+   CodeCrush — Global Design System & Home Screen Styles
+   Fonts: Inter (UI) + Fira Code (mono) from Google Fonts
+   ============================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+/* ── CSS Variables ─────────────────────────────────────────── */
+:root {
+  --bg-deep:      #0d1117;
+  --bg-surface:   #161b22;
+  --bg-card:      #21262d;
+  --bg-card-alt:  #30363d;
+
+  --border:       #30363d;
+  --border-focus: #58a6ff;
+
+  --primary:      #58a6ff;
+  --primary-dark: #1f6feb;
+  --secondary:    #8b949e;
+  --success:      #3fb950;
+  --danger:       #f85149;
+  --warning:      #d29922;
+
+  --text-primary:   #f0f6fc;
+  --text-secondary: #8b949e;
+  --text-muted:     #6e7681;
+
+  --font-ui:   -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+  --font-code: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --radius-sm:  6px;
+  --radius-md:  8px;
+  --radius-lg:  12px;
+  --radius-xl:  16px;
+
+  --shadow-sm:  0 1px 3px rgba(0,0,0,0.3);
+  --shadow-md:  0 4px 12px rgba(0,0,0,0.35);
+  --shadow-lg:  0 12px 32px rgba(0,0,0,0.45);
+
+  --transition: 0.2s ease;
+}
+
+/* ── Light Mode Palette ─────────────────────────────────────── */
+[data-theme="light"] {
+  --bg-deep:        #f6f8fa;
+  --bg-surface:     #ffffff;
+  --bg-card:        #ffffff;
+  --bg-card-alt:    #f0f2f5;
+
+  --border:         #d0d7de;
+  --border-focus:   #0969da;
+
+  --primary:        #0969da;
+  --primary-dark:   #0550ae;
+  --secondary:      #57606a;
+  --success:        #1a7f37;
+  --danger:         #cf222e;
+  --warning:        #9a6700;
+
+  --text-primary:   #1f2328;
+  --text-secondary: #57606a;
+  --text-muted:     #8c959f;
+
+  --shadow-sm:      0 1px 3px rgba(31,35,40,0.12);
+  --shadow-md:      0 4px 12px rgba(31,35,40,0.12);
+  --shadow-lg:      0 12px 32px rgba(31,35,40,0.18);
+}
+
+/* ── Theme Toggle Button ───────────────────────────────────── */
+.theme-toggle {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  border-radius: var(--radius-md);
+  padding: 6px 12px;
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all var(--transition);
+  user-select: none;
+}
+
+.theme-toggle:hover {
+  background: var(--bg-card-alt);
+  border-color: var(--primary);
+  transform: translateY(-1px);
+}
+
+.theme-toggle:active {
+  transform: translateY(0);
+}
+
+/* ── Global Reset ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-ui);
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: 1.5;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Utility Classes ───────────────────────────────────────── */
+.hidden { display: none !important; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+
+/* ── Scrollbar ─────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+/* ── Particle Canvas ───────────────────────────────────────── */
+#particleCanvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* =============================================================
+   HOME SCREEN
+   ============================================================= */
+
+.home-wrapper {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 48px 20px 60px;
+  gap: 0;
+}
+
+/* ── Logo ──────────────────────────────────────────────────── */
+.logo-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 580px;
+  gap: 12px;
+  margin-bottom: 36px;
+  animation: fadeDown 0.6s ease both;
+}
+
+.logo-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  font-size: 2.2rem;
+}
+
+.logo-text {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+}
+
+.logo-text span {
+  color: var(--primary);
+}
+
+.logo-version {
+  background: rgba(88, 166, 255, 0.1);
+  color: var(--primary);
+  border: 1px solid rgba(88, 166, 255, 0.25);
+  border-radius: var(--radius-sm);
+  padding: 2px 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+}
+
+/* ── Hero text ─────────────────────────────────────────────── */
+.hero-block {
+  text-align: center;
+  margin-bottom: 36px;
+  animation: fadeDown 0.7s ease 0.1s both;
+}
+
+.hero-block h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.18;
+  margin-bottom: 12px;
+  letter-spacing: -0.8px;
+  color: var(--text-primary);
+}
+
+.hero-block h1 .grad {
+  color: var(--primary);
+  background: none;
+  -webkit-text-fill-color: initial;
+}
+
+.hero-tagline {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  min-height: 1.6em;
+  letter-spacing: 0.2px;
+}
+
+.hero-tagline::after {
+  content: '|';
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
+  color: var(--primary);
+}
+
+@keyframes blink { 50% { opacity: 0; } }
+
+/* ── Main Card ─────────────────────────────────────────────── */
+.main-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 36px 32px;
+  width: 100%;
+  max-width: 580px;
+  box-shadow: var(--shadow-lg);
+  animation: fadeUp 0.7s ease 0.2s both;
+}
+
+/* ── Section Labels ────────────────────────────────────────── */
+.field-label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+/* ── Name Input ────────────────────────────────────────────── */
+.input-group {
+  margin-bottom: 32px;
+}
+
+.input-wrap {
+  position: relative;
+}
+
+.input-wrap .input-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  pointer-events: none;
+}
+
+.text-input {
+  width: 100%;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px 14px 48px;
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  color: var(--text-primary);
+  transition: border-color var(--transition), box-shadow var(--transition);
+  outline: none;
+}
+
+.text-input::placeholder { color: var(--text-muted); }
+
+.text-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(79, 156, 249, 0.15);
+}
+
+.text-input.invalid {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.15);
+}
+
+/* ── Error text ────────────────────────────────────────────── */
+.error-msg {
+  font-size: 0.78rem;
+  color: var(--danger);
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* ── Course Selection ──────────────────────────────────────── */
+.course-group {
+  margin-bottom: 32px;
+}
+
+.course-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.course-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px 12px 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  animation: fadeUp 0.5s ease both;
+  position: relative;
+  overflow: hidden;
+}
+
+.course-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.25s;
+  border-radius: inherit;
+}
+
+.course-card.html::before  { background: rgba(231,76,60,0.06); }
+.course-card.css::before   { background: rgba(88,166,255,0.06); }
+.course-card.js::before    { background: rgba(210,153,34,0.06); }
+
+.course-card:hover {
+  border-color: rgba(255,255,255,0.25);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.course-card:hover::before { opacity: 1; }
+
+.course-card.selected {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.course-card.html.selected  { border-color: var(--danger); box-shadow: 0 0 0 1.5px var(--danger); }
+.course-card.css.selected   { border-color: var(--primary); box-shadow: 0 0 0 1.5px var(--primary); }
+.course-card.js.selected    { border-color: var(--warning); box-shadow: 0 0 0 1.5px var(--warning); }
+
+.course-icon {
+  font-size: 1.8rem;
+  display: block;
+  margin-bottom: 8px;
+  transition: transform 0.2s;
+}
+
+.course-card:hover .course-icon { transform: scale(1.08); }
+
+.course-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.course-card.html  .course-name { color: var(--danger); }
+.course-card.css   .course-name { color: var(--primary); }
+.course-card.js    .course-name { color: var(--warning); }
+
+.course-desc {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.course-doc-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card-alt);
+  border: 1px solid var(--border);
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.course-doc-link:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.selected-check {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 0.9rem;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.course-card.selected .selected-check { opacity: 1; }
+
+/* ── Start Button ──────────────────────────────────────────── */
+.start-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--primary-dark);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.start-btn:hover {
+  background: var(--primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.start-btn:active {
+  transform: translateY(0);
+}
+
+.start-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ── Feature pills ─────────────────────────────────────────── */
+.feature-pills {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+  animation: fadeUp 0.8s ease 0.4s both;
+}
+
+.pill {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* ── Animations ────────────────────────────────────────────── */
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
