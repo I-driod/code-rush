@@ -76,76 +76,76 @@
         <p class="error-msg hidden" id="courseError" role="alert" style="margin-bottom:10px">
           <span aria-hidden="true">⚠️</span> Please select a course to continue.
         </p>
-        <div class="course-cards" role="radiogroup" aria-labelledby="courseLabel">
+        <div class="course-cards" role="group" aria-labelledby="courseLabel">
 
           <!-- HTML -->
-          <button
-            class="course-card html"
-            data-course="html"
-            role="radio"
-            aria-checked="false"
-            tabindex="0"
-            id="courseHtml"
-          >
-            <span class="selected-check" aria-hidden="true">✅</span>
-            <span class="course-icon" aria-hidden="true">🧱</span>
-            <span class="course-name">HTML</span>
-            <span class="course-desc">Tags, elements &amp; semantic structure</span>
+          <div class="course-card html">
+            <button
+              class="course-select"
+              type="button"
+              data-course="html"
+              aria-pressed="false"
+              id="courseHtml"
+            >
+              <span class="selected-check" aria-hidden="true">✅</span>
+              <span class="course-icon" aria-hidden="true">🧱</span>
+              <span class="course-name">HTML</span>
+              <span class="course-desc">Tags, elements &amp; semantic structure</span>
+            </button>
             <a
               class="course-doc-link"
               href="https://developer.mozilla.org/en-US/docs/Web/HTML"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Open MDN HTML Documentation in new tab"
-              onclick="event.stopPropagation()"
             >📖 MDN Docs ↗</a>
-          </button>
+          </div>
 
           <!-- CSS -->
-          <button
-            class="course-card css"
-            data-course="css"
-            role="radio"
-            aria-checked="false"
-            tabindex="0"
-            id="courseCss"
-          >
-            <span class="selected-check" aria-hidden="true">✅</span>
-            <span class="course-icon" aria-hidden="true">🎨</span>
-            <span class="course-name">CSS</span>
-            <span class="course-desc">Styling, layout &amp; animations</span>
+          <div class="course-card css">
+            <button
+              class="course-select"
+              type="button"
+              data-course="css"
+              aria-pressed="false"
+              id="courseCss"
+            >
+              <span class="selected-check" aria-hidden="true">✅</span>
+              <span class="course-icon" aria-hidden="true">🎨</span>
+              <span class="course-name">CSS</span>
+              <span class="course-desc">Styling, layout &amp; animations</span>
+            </button>
             <a
               class="course-doc-link"
               href="https://developer.mozilla.org/en-US/docs/Web/CSS"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Open MDN CSS Documentation in new tab"
-              onclick="event.stopPropagation()"
             >📖 MDN Docs ↗</a>
-          </button>
+          </div>
 
           <!-- JavaScript -->
-          <button
-            class="course-card js"
-            data-course="javascript"
-            role="radio"
-            aria-checked="false"
-            tabindex="0"
-            id="courseJs"
-          >
-            <span class="selected-check" aria-hidden="true">✅</span>
-            <span class="course-icon" aria-hidden="true">⚡</span>
-            <span class="course-name">JavaScript</span>
-            <span class="course-desc">Variables, DOM &amp; functions</span>
+          <div class="course-card js">
+            <button
+              class="course-select"
+              type="button"
+              data-course="javascript"
+              aria-pressed="false"
+              id="courseJs"
+            >
+              <span class="selected-check" aria-hidden="true">✅</span>
+              <span class="course-icon" aria-hidden="true">⚡</span>
+              <span class="course-name">JavaScript</span>
+              <span class="course-desc">Variables, DOM &amp; functions</span>
+            </button>
             <a
               class="course-doc-link"
               href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Open MDN JavaScript Documentation in new tab"
-              onclick="event.stopPropagation()"
             >📖 MDN Docs ↗</a>
-          </button>
+          </div>
 
         </div>
       </div>

@@ -6,7 +6,7 @@
   // ── DOM refs ──────────────────────────────────────────────────
   const nameInput    = document.getElementById('playerName');
   const startBtn     = document.getElementById('startBtn');
-  const courseCards  = document.querySelectorAll('.course-card');
+  const courseCards  = document.querySelectorAll('.course-select');
   const nameError    = document.getElementById('nameError');
   const courseError  = document.getElementById('courseError');
 
@@ -91,8 +91,12 @@
   // ── Course card selection ─────────────────────────────────────
   courseCards.forEach(card => {
     card.addEventListener('click', () => {
-      courseCards.forEach(c => c.classList.remove('selected'));
-      card.classList.add('selected');
+      courseCards.forEach(c => {
+        c.closest('.course-card').classList.remove('selected');
+        c.setAttribute('aria-pressed', 'false');
+      });
+      card.closest('.course-card').classList.add('selected');
+      card.setAttribute('aria-pressed', 'true');
       selectedCourse = card.dataset.course;
       courseError.classList.add('hidden');
     });
