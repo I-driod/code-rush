@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A beginner-friendly, offline guide to learning JavaScript.">
+  <title>JavaScript Basics — CodeCrush</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #0d1117;
+      color: #f0f6fc;
+      line-height: 1.65;
+    }
+
+    * { box-sizing: border-box; }
+
+    body { margin: 0; }
+
+    header, main, footer {
+      width: min(100% - 32px, 780px);
+      margin-inline: auto;
+    }
+
+    header { padding: 28px 0 12px; }
+
+    a { color: #79c0ff; }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 28px;
+      text-decoration: none;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+
+    .eyebrow {
+      color: #79c0ff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1 { margin: 8px 0; font-size: clamp(2.2rem, 8vw, 3.5rem); line-height: 1.1; }
+    h2 { margin-top: 0; font-size: 1.45rem; }
+    p { color: #c9d1d9; }
+
+    .intro { font-size: 1.1rem; }
+
+    main { padding: 18px 0 48px; }
+
+    .contents ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 8px 20px;
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .contents a { text-decoration: none; }
+    .contents a:hover { text-decoration: underline; }
+
+    section {
+      margin: 22px 0;
+      padding: 24px;
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+    }
+
+    pre {
+      overflow-x: auto;
+      margin: 16px 0 0;
+      padding: 18px;
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      color: #a5d6ff;
+      font: 0.92rem/1.65 Consolas, "Courier New", monospace;
+    }
+
+    code {
+      color: #a5d6ff;
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    .tip {
+      padding-left: 14px;
+      border-left: 3px solid #3fb950;
+    }
+
+    footer {
+      padding: 0 0 32px;
+      color: #8b949e;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 480px) {
+      section { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="back-link" href="index.html">← Back to CodeCrush</a>
+    <p class="eyebrow">JavaScript beginner's guide</p>
+    <h1>Learn JavaScript</h1>
+    <p class="intro">JavaScript adds behavior and interactivity to webpages. Learn the fundamentals, then use them to make a page respond to people.</p>
+  </header>
+
+  <main>
+    <section class="contents" aria-labelledby="contents-heading">
+      <h2 id="contents-heading">In this guide, developers will learn about;</h2>
+      <ul>
+        <li><a href="#javascript-basics">What JavaScript does</a></li>
+        <li><a href="#adding-js">Add JavaScript to a page</a></li>
+        <li><a href="#variables">Variables and values</a></li>
+        <li><a href="#operators">Operators and comparisons</a></li>
+        <li><a href="#conditions">Make decisions</a></li>
+        <li><a href="#loops">Repeat work with loops</a></li>
+        <li><a href="#functions">Functions</a></li>
+        <li><a href="#arrays">Arrays</a></li>
+        <li><a href="#objects">Objects</a></li>
+        <li><a href="#dom">Work with the page</a></li>
+        <li><a href="#events">Respond to events</a></li>
+        <li><a href="#forms">Handle form input</a></li>
+        <li><a href="#async">Asynchronous JavaScript</a></li>
+        <li><a href="#debugging">Debug and practice</a></li>
+      </ul>
+    </section>
+
+    <section id="javascript-basics" aria-labelledby="javascript-basics-heading">
+      <h2 id="javascript-basics-heading">1. What JavaScript does</h2>
+      <p>HTML describes page content, CSS styles it, and JavaScript can make it interactive. JavaScript can respond to clicks, update text, validate input, and more.</p>
+      <p>JavaScript is case-sensitive, so <code>message</code> and <code>Message</code> are different names. Statements can be written on separate lines; semicolons are commonly used to mark their ends.</p>
+    </section>
+
+    <section id="adding-js" aria-labelledby="adding-js-heading">
+      <h2 id="adding-js-heading">2. Add JavaScript to a page</h2>
+      <p>Put your JavaScript in a separate <code>.js</code> file, then load it from the HTML page. The <code>defer</code> attribute runs the script after the HTML has been parsed.</p>
+      <pre><code>&lt;script src="script.js" defer&gt;&lt;/script&gt;</code></pre>
+      <p>For a quick experiment, you can also write JavaScript inside a <code>&lt;script&gt;</code> element. External files are easier to organize and reuse.</p>
+    </section>
+
+    <section id="variables" aria-labelledby="variables-heading">
+      <h2 id="variables-heading">3. Variables and values</h2>
+      <p>Variables give names to values. Use <code>const</code> by default, and use <code>let</code> when you need to assign a different value later.</p>
+      <pre><code>const learnerName = "Alex";
+let points = 0;
+points = points + 10;
+
+const isReady = true;</code></pre>
+      <p>Common value types include strings (text), numbers, booleans (<code>true</code> or <code>false</code>), arrays, objects, and <code>null</code>. A <code>const</code> variable cannot be reassigned, though the contents of an object or array declared with <code>const</code> can still be changed.</p>
+    </section>
+
+    <section id="operators" aria-labelledby="operators-heading">
+      <h2 id="operators-heading">4. Operators and comparisons</h2>
+      <p>Operators perform calculations or compare values. Use <code>===</code> to check equality without converting between types, and <code>!==</code> to check inequality.</p>
+      <pre><code>const total = 12 + 8;
+const hasEnoughPoints = total >= 20;
+const isDifferent = "5" !== 5;</code></pre>
+      <p>Arithmetic operators include <code>+</code>, <code>-</code>, <code>*</code>, and <code>/</code>. Comparison expressions produce a boolean value.</p>
+    </section>
+
+    <section id="conditions" aria-labelledby="conditions-heading">
+      <h2 id="conditions-heading">5. Make decisions</h2>
+      <p>Use an <code>if</code> statement to run code only when a condition is true. Add <code>else</code> for an alternative.</p>
+      <pre><code>const score = 82;
+
+if (score >= 70) {
+  console.log("You passed!");
+} else {
+  console.log("Keep practicing.");
+}</code></pre>
+      <p>Use <code>&amp;&amp;</code> when both conditions must be true, and <code>||</code> when either condition may be true.</p>
+    </section>
+
+    <section id="loops" aria-labelledby="loops-heading">
+      <h2 id="loops-heading">6. Repeat work with loops</h2>
+      <p>A loop runs a block of code repeatedly. A <code>for</code> loop is useful when you know how many times to repeat an action.</p>
+      <pre><code>for (let count = 1; count <= 3; count++) {
+  console.log("Practice round " + count);
+}</code></pre>
+      <p>The loop starts at 1, runs while the condition is true, and increases <code>count</code> after each round. Make sure a loop's condition eventually becomes false.</p>
+    </section>
+
+    <section id="functions" aria-labelledby="functions-heading">
+      <h2 id="functions-heading">7. Create reusable functions</h2>
+      <p>A function groups instructions so you can run them when needed. It can accept inputs called parameters and send a value back with <code>return</code>.</p>
+      <pre><code>function greet(name) {
+  return "Hello, " + name + "!";
+}
+
+const greeting = greet("Alex");
+console.log(greeting);</code></pre>
+      <p>An arrow function is another way to write a function:</p>
+      <pre><code>const double = (number) =&gt; {
+  return number * 2;
+};</code></pre>
+    </section>
+
+    <section id="arrays" aria-labelledby="arrays-heading">
+      <h2 id="arrays-heading">8. Store lists in arrays</h2>
+      <p>An array holds an ordered list of values. Array positions start at index <code>0</code>.</p>
+      <pre><code>const courses = ["HTML", "CSS", "JavaScript"];
+console.log(courses[0]); // HTML
+
+courses.push("Accessibility");
+console.log(courses.length); // 4</code></pre>
+      <p>Use array methods such as <code>push()</code> to add an item. You can use <code>for...of</code> to visit each value:</p>
+      <pre><code>for (const course of courses) {
+  console.log(course);
+}</code></pre>
+    </section>
+
+    <section id="objects" aria-labelledby="objects-heading">
+      <h2 id="objects-heading">9. Group related data in objects</h2>
+      <p>An object stores related information as named properties. Read a property with dot notation.</p>
+      <pre><code>const learner = {
+  name: "Alex",
+  points: 15
+};
+
+console.log(learner.name);
+learner.points = 20;</code></pre>
+      <p>Use an object when values describe one thing; use an array when you need an ordered list of things.</p>
+    </section>
+
+    <section id="dom" aria-labelledby="dom-heading">
+      <h2 id="dom-heading">10. Find and update page elements</h2>
+      <p>The browser represents a webpage as the Document Object Model (DOM). JavaScript can find elements and update their content.</p>
+      <pre><code>&lt;p id="message"&gt;Welcome!&lt;/p&gt;</code></pre>
+      <pre><code>const message = document.querySelector("#message");
+message.textContent = "Thanks for visiting!";</code></pre>
+      <p>Use <code>textContent</code> for plain text. Avoid putting untrusted text into <code>innerHTML</code>, because it is interpreted as markup.</p>
+    </section>
+
+    <section id="events" aria-labelledby="events-heading">
+      <h2 id="events-heading">11. Respond to events</h2>
+      <p>Events represent things that happen on a page, such as a button click. Use <code>addEventListener()</code> to run a function when an event occurs.</p>
+      <pre><code>&lt;button id="hello-button" type="button"&gt;Say hello&lt;/button&gt;
+&lt;p id="message"&gt;&lt;/p&gt;</code></pre>
+      <pre><code>const button = document.querySelector("#hello-button");
+const message = document.querySelector("#message");
+
+button.addEventListener("click", () =&gt; {
+  message.textContent = "Hello!";
+});</code></pre>
+      <p>Event listeners keep behavior separate from the HTML and make the page respond to user actions.</p>
+    </section>
+
+    <section id="forms" aria-labelledby="forms-heading">
+      <h2 id="forms-heading">12. Handle form input</h2>
+      <p>Listen for a form's <code>submit</code> event to handle its values. Calling <code>preventDefault()</code> prevents the browser's default navigation while your code handles the example.</p>
+      <pre><code>&lt;form id="name-form"&gt;
+  &lt;label for="name"&gt;Your name&lt;/label&gt;
+  &lt;input id="name" name="name" required&gt;
+  &lt;button type="submit"&gt;Say hello&lt;/button&gt;
+&lt;/form&gt;
+&lt;p id="greeting"&gt;&lt;/p&gt;</code></pre>
+      <pre><code>const form = document.querySelector("#name-form");
+const nameInput = document.querySelector("#name");
+const greeting = document.querySelector("#greeting");
+
+form.addEventListener("submit", (event) =&gt; {
+  event.preventDefault();
+  greeting.textContent = "Hello, " + nameInput.value + "!";
+});</code></pre>
+      <p>Use built-in HTML validation, such as the <code>required</code> attribute, when it fits your form.</p>
+    </section>
+
+    <section id="async" aria-labelledby="async-heading">
+      <h2 id="async-heading">13. Asynchronous JavaScript</h2>
+      <p>Some tasks, such as waiting for a timer or loading data, finish later. A <code>Promise</code> represents a result that may become available in the future. <code>async</code> and <code>await</code> help write asynchronous code clearly.</p>
+      <pre><code>async function showMessage() {
+  await new Promise((resolve) =&gt; setTimeout(resolve, 500));
+  console.log("Half a second has passed.");
+}
+
+showMessage();</code></pre>
+      <p>When using <code>await</code>, put it inside an <code>async</code> function. In real projects, handle errors from operations that can fail.</p>
+    </section>
+
+    <section id="debugging" aria-labelledby="debugging-heading">
+      <h2 id="debugging-heading">14. Debug and practice</h2>
+      <p>Use <code>console.log()</code> to inspect values. If something does not work, read the browser's developer console for errors, check spelling and capitalization, and verify that the script loads after the page elements exist.</p>
+      <p>Your practice project: make a small quiz with a question, a text input, and a button. Use a function to check the answer, an <code>if</code> statement to choose a message, and the DOM to show the result.</p>
+      <p>Try the JavaScript course in CodeCrush to practice through coding challenges.</p>
+      <a href="index.html">Return to CodeCrush and start practicing →</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>This learning guide is included with CodeCrush and works offline.</p>
+  </footer>
+</body>
+</html>
