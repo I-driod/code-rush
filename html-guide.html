@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A beginner-friendly, offline guide to learning HTML.">
+  <title>HTML Basics — CodeCrush</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #0d1117;
+      color: #f0f6fc;
+      line-height: 1.65;
+    }
+
+    * { box-sizing: border-box; }
+
+    body { margin: 0; }
+
+    header, main, footer {
+      width: min(100% - 32px, 780px);
+      margin-inline: auto;
+    }
+
+    header { padding: 28px 0 12px; }
+
+    a { color: #79c0ff; }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 28px;
+      text-decoration: none;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+
+    .eyebrow {
+      color: #79c0ff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1 { margin: 8px 0; font-size: clamp(2.2rem, 8vw, 3.5rem); line-height: 1.1; }
+    h2 { margin-top: 0; font-size: 1.45rem; }
+    p { color: #c9d1d9; }
+
+    .intro { font-size: 1.1rem; }
+
+    main { padding: 18px 0 48px; }
+
+    .contents ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 8px 20px;
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .contents a { text-decoration: none; }
+    .contents a:hover { text-decoration: underline; }
+
+    section {
+      margin: 22px 0;
+      padding: 24px;
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+    }
+
+    pre {
+      overflow-x: auto;
+      margin: 16px 0 0;
+      padding: 18px;
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      color: #a5d6ff;
+      font: 0.92rem/1.65 Consolas, "Courier New", monospace;
+    }
+
+    code {
+      color: #a5d6ff;
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    .tip {
+      padding-left: 14px;
+      border-left: 3px solid #3fb950;
+    }
+
+    footer {
+      padding: 0 0 32px;
+      color: #8b949e;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 480px) {
+      section { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="back-link" href="index.html">← Back to CodeCrush</a>
+    <p class="eyebrow">HTML beginner's guide</p>
+    <h1>Learn HTML</h1>
+    <p class="intro">HTML gives a webpage its structure. Learn the building blocks, then try changing the examples yourself.</p>
+  </header>
+
+  <main>
+    <section class="contents" aria-labelledby="contents-heading">
+      <h2 id="contents-heading">In this guide, developers will learn about; </h2>
+      <ul>
+        <li><a href="#elements">Elements and tags</a></li>
+        <li><a href="#document">A complete HTML page</a></li>
+        <li><a href="#text">Headings and text</a></li>
+        <li><a href="#attributes">Links and attributes</a></li>
+        <li><a href="#images">Images</a></li>
+        <li><a href="#lists">Lists</a></li>
+        <li><a href="#semantic">Meaningful page structure</a></li>
+        <li><a href="#tables">Tables</a></li>
+        <li><a href="#forms">Forms</a></li>
+        <li><a href="#accessibility">Accessibility basics</a></li>
+        <li><a href="#comments">Comments and special characters</a></li>
+        <li><a href="#practice">Practice project</a></li>
+      </ul>
+    </section>
+
+    <section id="elements" aria-labelledby="elements-heading">
+      <h2 id="elements-heading">1. Elements and tags</h2>
+      <p>Most HTML elements have an opening tag, some content, and a closing tag. Tags are written inside angle brackets.</p>
+      <pre><code>&lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;h1&gt;This is a main heading.&lt;/h1&gt;</code></pre>
+      <p>The <code>&lt;p&gt;</code> element is for a paragraph. Use heading elements from <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code> to organize sections.</p>
+      <p>Some elements are <strong>void elements</strong>: they do not wrap content and have no closing tag. Examples include <code>&lt;br&gt;</code> for a line break and <code>&lt;img&gt;</code> for an image.</p>
+    </section>
+
+    <section id="document" aria-labelledby="document-heading">
+      <h2 id="document-heading">2. A complete HTML page</h2>
+      <p>Start a page with the document declaration, then give it a head for page information and a body for visible content.</p>
+      <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;My First Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hello, web!&lt;/h1&gt;
+  &lt;p&gt;I made this page with HTML.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      <p>Save the file with an <code>.html</code> extension, such as <code>index.html</code>, then open it in a browser. The <code>&lt;title&gt;</code> appears in the browser tab; content inside <code>&lt;body&gt;</code> appears on the page.</p>
+    </section>
+
+    <section id="text" aria-labelledby="text-heading">
+      <h2 id="text-heading">3. Headings and text</h2>
+      <p>Headings create an outline for your content. Start with a main <code>&lt;h1&gt;</code>, then use <code>&lt;h2&gt;</code> for major sections and <code>&lt;h3&gt;</code> for subsections. Choose heading levels by structure, not by their default size.</p>
+      <pre><code>&lt;h1&gt;My Garden&lt;/h1&gt;
+&lt;p&gt;Welcome to my garden journal.&lt;/p&gt;
+&lt;h2&gt;What I'm growing&lt;/h2&gt;
+&lt;p&gt;This year I planted tomatoes and herbs.&lt;/p&gt;</code></pre>
+      <p>Use <code>&lt;strong&gt;</code> to indicate important text and <code>&lt;em&gt;</code> for emphasized text. Browsers usually display them in bold and italics, respectively.</p>
+    </section>
+
+    <section id="attributes" aria-labelledby="attributes-heading">
+      <h2 id="attributes-heading">4. Links and attributes</h2>
+      <p>Attributes add information to an element. A link uses the <code>href</code> attribute to say where it goes.</p>
+      <pre><code>&lt;a href="about.html"&gt;Read about me&lt;/a&gt;</code></pre>
+      <p>Here, <code>href</code> is the attribute and <code>about.html</code> is its value. A relative path like this points to another file in your project. You can also link to a section on the same page:</p>
+      <pre><code>&lt;a href="#contact"&gt;Go to contact details&lt;/a&gt;
+...
+&lt;h2 id="contact"&gt;Contact details&lt;/h2&gt;</code></pre>
+      <p>Attribute values should be quoted. The <code>id</code> attribute identifies a unique element on the page.</p>
+    </section>
+
+    <section id="images" aria-labelledby="images-heading">
+      <h2 id="images-heading">5. Add images</h2>
+      <p>The <code>&lt;img&gt;</code> element displays an image. Its <code>src</code> attribute points to the image file and its <code>alt</code> attribute describes the image.</p>
+      <pre><code>&lt;img src="garden.jpg" alt="Red tomatoes growing on a vine"&gt;</code></pre>
+      <p>Keep the image file in your project and use the correct path. If an image is only decorative, use an empty <code>alt</code> value: <code>alt=""</code>.</p>
+    </section>
+
+    <section id="lists" aria-labelledby="lists-heading">
+      <h2 id="lists-heading">6. Make a list</h2>
+      <p>Use an unordered list for items where order does not matter. Put each item inside an <code>&lt;li&gt;</code> element.</p>
+      <pre><code>&lt;ul&gt;
+  &lt;li&gt;Plan a page&lt;/li&gt;
+  &lt;li&gt;Write its HTML&lt;/li&gt;
+  &lt;li&gt;Open it in a browser&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+      <p>For steps that should be in order, use an ordered list:</p>
+      <pre><code>&lt;ol&gt;
+  &lt;li&gt;Create an HTML file&lt;/li&gt;
+  &lt;li&gt;Add some content&lt;/li&gt;
+  &lt;li&gt;Open the file in a browser&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+    </section>
+
+    <section id="semantic" aria-labelledby="semantic-heading">
+      <h2 id="semantic-heading">7. Structure content meaningfully</h2>
+      <p>Semantic elements describe what their content means. Use <code>&lt;header&gt;</code> for introductory content, <code>&lt;main&gt;</code> for the primary content, and <code>&lt;footer&gt;</code> for closing information.</p>
+      <pre><code>&lt;header&gt;
+  &lt;h1&gt;My Recipe Book&lt;/h1&gt;
+&lt;/header&gt;
+&lt;main&gt;
+  &lt;article&gt;
+    &lt;h2&gt;Apple cake&lt;/h2&gt;
+    &lt;p&gt;A simple cake for autumn.&lt;/p&gt;
+  &lt;/article&gt;
+&lt;/main&gt;
+&lt;footer&gt;Written by Sam&lt;/footer&gt;</code></pre>
+      <p class="tip">Tip: Choose an element because of its meaning, not just how it looks. CSS can change how any element appears.</p>
+    </section>
+
+    <section id="tables" aria-labelledby="tables-heading">
+      <h2 id="tables-heading">8. Show data in a table</h2>
+      <p>Use a table for data that belongs in rows and columns, not to lay out an entire page. Table headings help explain each column.</p>
+      <pre><code>&lt;table&gt;
+  &lt;caption&gt;Weekly reading&lt;/caption&gt;
+  &lt;tr&gt;
+    &lt;th scope="col"&gt;Day&lt;/th&gt;
+    &lt;th scope="col"&gt;Pages&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Monday&lt;/td&gt;
+    &lt;td&gt;12&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+      <p><code>&lt;th&gt;</code> marks a heading cell, while <code>&lt;td&gt;</code> marks an ordinary data cell.</p>
+    </section>
+
+    <section id="forms" aria-labelledby="forms-heading">
+      <h2 id="forms-heading">9. Collect information with a form</h2>
+      <p>Forms let people enter information. Connect each input to a visible label using matching <code>for</code> and <code>id</code> values.</p>
+      <pre><code>&lt;form&gt;
+  &lt;label for="visitor-name"&gt;Your name&lt;/label&gt;
+  &lt;input id="visitor-name" name="name" type="text"&gt;
+  &lt;button type="submit"&gt;Send&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+      <p>The <code>name</code> attribute identifies the input's value when a form is submitted. A form needs a server or JavaScript to process submitted information.</p>
+    </section>
+
+    <section id="accessibility" aria-labelledby="accessibility-heading">
+      <h2 id="accessibility-heading">10. Accessibility basics</h2>
+      <p>Accessible HTML helps more people use your page, including people using keyboards or screen readers.</p>
+      <ul>
+        <li>Give images useful alternative text with <code>alt</code>.</li>
+        <li>Use headings in a logical order to organize the page.</li>
+        <li>Use a real <code>&lt;button&gt;</code> for an action and an <code>&lt;a&gt;</code> for navigation.</li>
+        <li>Give form controls a descriptive, connected <code>&lt;label&gt;</code>.</li>
+        <li>Write link text that explains where the link goes.</li>
+      </ul>
+    </section>
+
+    <section id="comments" aria-labelledby="comments-heading">
+      <h2 id="comments-heading">11. Comments and special characters</h2>
+      <p>Comments are notes in your HTML source. Browsers do not display them as page content.</p>
+      <pre><code>&lt;!-- This is a note for the people editing the file. --&gt;</code></pre>
+      <p>To show characters that HTML normally treats as markup, use character references:</p>
+      <pre><code>&amp;lt; displays &lt;
+&amp;gt; displays &gt;
+&amp;amp; displays &amp;</code></pre>
+    </section>
+
+    <section id="practice" aria-labelledby="practice-heading">
+      <h2 id="practice-heading">12. Your practice project</h2>
+      <p>Make a simple page about a hobby, favorite book, or pet. Try to include:</p>
+      <ul>
+        <li>A page title and one main heading</li>
+        <li>Two sections with headings and paragraphs</li>
+        <li>A list and a link</li>
+        <li>An image with helpful alternative text</li>
+        <li>Semantic page structure using <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, and <code>&lt;footer&gt;</code></li>
+      </ul>
+      <p>Save your file as <code>index.html</code> and open it in a browser to see your work.</p>
+      <p>Try the HTML course in CodeCrush and use what you have learned to complete the coding challenges.</p>
+      <a href="index.html">Return to CodeCrush and start practicing →</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>This learning guide is included with CodeCrush and works offline.</p>
+  </footer>
+</body>
+</html>

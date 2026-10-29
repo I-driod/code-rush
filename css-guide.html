@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A beginner-friendly, offline guide to learning CSS.">
+  <title>CSS Basics — CodeCrush</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #0d1117;
+      color: #f0f6fc;
+      line-height: 1.65;
+    }
+
+    * { box-sizing: border-box; }
+
+    body { margin: 0; }
+
+    header, main, footer {
+      width: min(100% - 32px, 780px);
+      margin-inline: auto;
+    }
+
+    header { padding: 28px 0 12px; }
+
+    a { color: #79c0ff; }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 28px;
+      text-decoration: none;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+
+    .eyebrow {
+      color: #79c0ff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1 { margin: 8px 0; font-size: clamp(2.2rem, 8vw, 3.5rem); line-height: 1.1; }
+    h2 { margin-top: 0; font-size: 1.45rem; }
+    p { color: #c9d1d9; }
+
+    .intro { font-size: 1.1rem; }
+
+    main { padding: 18px 0 48px; }
+
+    .contents ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 8px 20px;
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .contents a { text-decoration: none; }
+    .contents a:hover { text-decoration: underline; }
+
+    section {
+      margin: 22px 0;
+      padding: 24px;
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+    }
+
+    pre {
+      overflow-x: auto;
+      margin: 16px 0 0;
+      padding: 18px;
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      color: #a5d6ff;
+      font: 0.92rem/1.65 Consolas, "Courier New", monospace;
+    }
+
+    code {
+      color: #a5d6ff;
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    .tip {
+      padding-left: 14px;
+      border-left: 3px solid #3fb950;
+    }
+
+    footer {
+      padding: 0 0 32px;
+      color: #8b949e;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 480px) {
+      section { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="back-link" href="index.html">← Back to CodeCrush</a>
+    <p class="eyebrow">CSS beginner's guide</p>
+    <h1>Learn CSS</h1>
+    <p class="intro">CSS controls how webpages look and fit different screens. Learn the basics, then experiment with the examples.</p>
+  </header>
+
+  <main>
+    <section class="contents" aria-labelledby="contents-heading">
+      <h2 id="contents-heading">In this guide, developers will learn about; </h2>
+      <ul>
+        <li><a href="#css-basics">What CSS does</a></li>
+        <li><a href="#adding-css">Add CSS to a page</a></li>
+        <li><a href="#selectors">Selectors</a></li>
+        <li><a href="#cascade">Cascade and specificity</a></li>
+        <li><a href="#colors">Colors and units</a></li>
+        <li><a href="#box-model">The box model</a></li>
+        <li><a href="#typography">Text and fonts</a></li>
+        <li><a href="#layout">Display and spacing</a></li>
+        <li><a href="#flexbox">Flexbox</a></li>
+        <li><a href="#grid">Grid</a></li>
+        <li><a href="#responsive">Responsive design</a></li>
+        <li><a href="#states">Pseudo-classes and focus</a></li>
+        <li><a href="#variables">CSS variables</a></li>
+        <li><a href="#debugging">Debugging and practice</a></li>
+      </ul>
+    </section>
+
+    <section id="css-basics" aria-labelledby="css-basics-heading">
+      <h2 id="css-basics-heading">1. What CSS does</h2>
+      <p>CSS stands for Cascading Style Sheets. HTML describes the content and structure of a page; CSS describes how that content is presented, including colors, spacing, and layout.</p>
+      <p>A CSS rule has a selector and a declaration block. Each declaration is a property and a value:</p>
+      <pre><code>p {
+  color: navy;
+  font-size: 18px;
+}</code></pre>
+      <p>Here, <code>p</code> is the selector. The declarations set the paragraph's text color and size.</p>
+    </section>
+
+    <section id="adding-css" aria-labelledby="adding-css-heading">
+      <h2 id="adding-css-heading">2. Add CSS to a page</h2>
+      <p>The usual approach is to put CSS in a separate <code>.css</code> file and link it from the document's <code>&lt;head&gt;</code>.</p>
+      <pre><code>&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
+      <p>For a quick experiment, you can also write rules inside a <code>&lt;style&gt;</code> element in the head. Keeping styles in a separate file makes them easier to reuse and maintain.</p>
+    </section>
+
+    <section id="selectors" aria-labelledby="selectors-heading">
+      <h2 id="selectors-heading">3. Select elements to style</h2>
+      <p>Selectors choose which HTML elements a rule affects. Element selectors match tags, class selectors start with a dot, and ID selectors start with a hash.</p>
+      <pre><code>h1 {
+  color: darkslateblue;
+}
+
+.notice {
+  background-color: lightyellow;
+}
+
+#page-title {
+  text-align: center;
+}</code></pre>
+      <p>Use classes when a style should apply to multiple elements. An ID should identify one unique element on a page.</p>
+    </section>
+
+    <section id="cascade" aria-labelledby="cascade-heading">
+      <h2 id="cascade-heading">4. The cascade and specificity</h2>
+      <p>When multiple CSS rules match an element, the browser resolves conflicts using the cascade. More specific selectors generally win over less specific ones; if specificity is equal, the later rule wins.</p>
+      <pre><code>p { color: steelblue; }
+.warning { color: firebrick; }</code></pre>
+      <p>A paragraph with <code>class="warning"</code> will use the class rule's color. Prefer clear selectors and avoid relying on <code>!important</code> to resolve conflicts.</p>
+    </section>
+
+    <section id="colors" aria-labelledby="colors-heading">
+      <h2 id="colors-heading">5. Colors and units</h2>
+      <p>CSS supports named colors, hexadecimal colors, and functions such as <code>rgb()</code>. Pick the format that makes your styles easiest to understand.</p>
+      <pre><code>body {
+  color: #222222;
+  background-color: rgb(245, 247, 250);
+}
+
+.badge {
+  border: 2px solid darkorange;
+}</code></pre>
+      <p>Common size units include <code>px</code> for fixed lengths, <code>rem</code> for a size relative to the root font size, and <code>%</code> for a size relative to a containing element. Relative units can help layouts adapt.</p>
+    </section>
+
+    <section id="box-model" aria-labelledby="box-model-heading">
+      <h2 id="box-model-heading">6. Understand the box model</h2>
+      <p>Each element is laid out as a box: content is surrounded by padding, a border, and margin. Padding is inside the border; margin creates space outside it.</p>
+      <pre><code>* {
+  box-sizing: border-box;
+}
+
+.card {
+  width: 300px;
+  padding: 20px;
+  border: 2px solid #52606d;
+  margin: 16px;
+}</code></pre>
+      <p><code>border-box</code> includes padding and border in the declared width, which makes sizing more predictable.</p>
+    </section>
+
+    <section id="typography" aria-labelledby="typography-heading">
+      <h2 id="typography-heading">7. Style text</h2>
+      <p>Typography rules can set the font, size, weight, line spacing, and alignment. A readable line height and text size make content more comfortable to read.</p>
+      <pre><code>body {
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+h1 {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}</code></pre>
+    </section>
+
+    <section id="layout" aria-labelledby="layout-heading">
+      <h2 id="layout-heading">8. Display and spacing</h2>
+      <p>The <code>display</code> property changes how an element participates in layout. Block elements usually start on a new line; inline elements flow with text. Flexbox and Grid are useful tools for arranging groups of elements.</p>
+      <pre><code>.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.hidden {
+  display: none;
+}</code></pre>
+      <p>Use padding for space inside a component and margin for space around it. A centered fixed-width page can use automatic left and right margins.</p>
+    </section>
+
+    <section id="flexbox" aria-labelledby="flexbox-heading">
+      <h2 id="flexbox-heading">9. Arrange items with Flexbox</h2>
+      <p>Flexbox is useful for arranging items in one direction, either a row or a column. Set <code>display: flex</code> on the parent container.</p>
+      <pre><code>.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}</code></pre>
+      <p><code>justify-content</code> distributes items along the main axis, while <code>align-items</code> aligns them across the other axis.</p>
+    </section>
+
+    <section id="grid" aria-labelledby="grid-heading">
+      <h2 id="grid-heading">10. Build layouts with Grid</h2>
+      <p>CSS Grid is designed for layouts with rows and columns. Define the columns on the parent, and the browser places its children into the grid.</p>
+      <pre><code>.card-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}</code></pre>
+      <p><code>1fr</code> gives a column a share of the available space. Use <code>gap</code> to add space between rows and columns.</p>
+    </section>
+
+    <section id="responsive" aria-labelledby="responsive-heading">
+      <h2 id="responsive-heading">11. Adapt to different screens</h2>
+      <p>Responsive design helps a page work on small and large screens. Flexible widths and media queries let styles change when the viewport is narrow.</p>
+      <pre><code>.card-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 600px) {
+  .card-list {
+    grid-template-columns: 1fr;
+  }
+}</code></pre>
+      <p>The media query applies its rules when the viewport is 600 pixels wide or less. Test layouts at different sizes as you build.</p>
+    </section>
+
+    <section id="states" aria-labelledby="states-heading">
+      <h2 id="states-heading">12. Interaction states and focus</h2>
+      <p>Pseudo-classes style elements in a particular state. Use <code>:hover</code> for pointer hover and <code>:focus-visible</code> to make keyboard focus easy to see.</p>
+      <pre><code>a:hover {
+  text-decoration: underline;
+}
+
+button:focus-visible {
+  outline: 3px solid royalblue;
+  outline-offset: 3px;
+}</code></pre>
+      <p>Do not remove the browser's focus indicator unless you replace it with a clearly visible alternative.</p>
+    </section>
+
+    <section id="variables" aria-labelledby="variables-heading">
+      <h2 id="variables-heading">13. Reuse values with CSS variables</h2>
+      <p>Custom properties, often called CSS variables, store values you can reuse. Define them with two hyphens and read them with <code>var()</code>.</p>
+      <pre><code>:root {
+  --brand-color: #2563eb;
+  --card-padding: 20px;
+}
+
+.card {
+  border-top: 4px solid var(--brand-color);
+  padding: var(--card-padding);
+}</code></pre>
+      <p>Changing a value in one place updates every rule that uses that variable.</p>
+    </section>
+
+    <section id="debugging" aria-labelledby="debugging-heading">
+      <h2 id="debugging-heading">14. Debug and practice</h2>
+      <p>If a style does not appear, check that the stylesheet path is correct, the selector matches the HTML, and each declaration ends with a semicolon. Also check for misspelled property names and missing braces.</p>
+      <p>Your practice project: create a small profile page and style its heading, paragraphs, links, and a card. Then try arranging a few cards with Grid, making them stack on a narrow screen, and adding a visible keyboard focus style.</p>
+      <p>Try the CSS course in CodeCrush to practice styling through coding challenges.</p>
+      <a href="index.html">Return to CodeCrush and start practicing →</a>
+    </section>
+  </main>
+
+  <footer>
+  <p>This learning guide is included with CodeCrush and works offline.</p>
+  </footer>
+</body>
+</html>

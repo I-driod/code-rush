@@ -1,6 +1,6 @@
 // =============================================================
 //  CodeCrush — Question Bank
-//  Fill-in-blank code questions: 20 per course (60 total)
+//  Fill-in-blank code questions: 20 per set, per course
 //  Each option array is ordered; answer = index of correct one.
 // =============================================================
 
@@ -75,8 +75,8 @@ const QUESTION_BANK = {
       title: 'Table Data Cell',
       snippet: `<table>\n  <tr>\n    <___>Name</___>\n    <___>Score</___>\n  </tr>\n</table>`,
       options: ['td', 'th', 'cell', 'tc'],
-      answer: 0,
-      explanation: '&lt;td&gt; creates a table data cell. &lt;th&gt; creates a header cell (bold & centered).'
+      answer: 1,
+      explanation: '&lt;th&gt; creates a table header cell, which is appropriate for the column labels shown here.'
     },
     {
       id: 'h10', topic: 'Forms', difficulty: 2,
@@ -495,11 +495,503 @@ const QUESTION_BANK = {
   ]
 };
 
+const ALTERNATE_QUESTION_BANK = {
+  html: [
+    {
+      id: 'h21', topic: 'Headings', difficulty: 1,
+      title: 'Page Heading',
+      snippet: `<___>My Coding Journal</___>\n<p>Notes from my first project</p>`,
+      options: ['h2', 'h1', 'header', 'heading'],
+      answer: 1,
+      explanation: '&lt;h1&gt; is the main heading for the page and describes its primary topic.'
+    },
+    {
+      id: 'h22', topic: 'Links', difficulty: 1,
+      title: 'Link Destination',
+      snippet: `<a ___="contact.html">Contact me</a>`,
+      options: ['src', 'href', 'action', 'target'],
+      answer: 1,
+      explanation: 'The href attribute tells a link which page or location to open.'
+    },
+    {
+      id: 'h23', topic: 'Lists', difficulty: 1,
+      title: 'Bulleted Ingredients',
+      snippet: `<___>\n  <li>Flour</li>\n  <li>Sugar</li>\n</___>`,
+      options: ['ol', 'ul', 'dl', 'list'],
+      answer: 1,
+      explanation: '&lt;ul&gt; creates a list whose items are not presented in a numbered order.'
+    },
+    {
+      id: 'h24', topic: 'Images', difficulty: 1,
+      title: 'Image Description',
+      snippet: `<img src="cat.jpg" ___="A cat sleeping in a sunny window">`,
+      options: ['title', 'alt', 'caption', 'description'],
+      answer: 1,
+      explanation: 'The alt attribute provides a text alternative describing the image.'
+    },
+    {
+      id: 'h25', topic: 'Forms', difficulty: 1,
+      title: 'Submit Button',
+      snippet: `<form>\n  <___ type="submit">Join</___>\n</form>`,
+      options: ['input', 'button', 'submit', 'a'],
+      answer: 1,
+      explanation: 'A button with type="submit" submits its containing form.'
+    },
+    {
+      id: 'h26', topic: 'Forms', difficulty: 2,
+      title: 'Make an Input Mandatory',
+      snippet: `<input type="email" name="email" ___>`,
+      options: ['validate', 'required', 'mandatory', 'needed'],
+      answer: 1,
+      explanation: 'The boolean required attribute makes the browser require a value before form submission.'
+    },
+    {
+      id: 'h27', topic: 'Semantic', difficulty: 2,
+      title: 'Site Navigation',
+      snippet: `<___ aria-label="Main menu">\n  <a href="/">Home</a>\n</___>`,
+      options: ['menu', 'nav', 'navigation', 'links'],
+      answer: 1,
+      explanation: '&lt;nav&gt; represents a section of major navigation links.'
+    },
+    {
+      id: 'h28', topic: 'Text', difficulty: 1,
+      title: 'Write a Paragraph',
+      snippet: `<___>Learning HTML is fun.</___>`,
+      options: ['text', 'p', 'paragraph', 'span'],
+      answer: 1,
+      explanation: '&lt;p&gt; represents a paragraph of text.'
+    },
+    {
+      id: 'h29', topic: 'Tables', difficulty: 2,
+      title: 'Label a Table Column',
+      snippet: `<table>\n  <tr><___ scope="col">Price</___></tr>\n</table>`,
+      options: ['td', 'th', 'tr', 'caption'],
+      answer: 1,
+      explanation: '&lt;th&gt; marks a table header cell and associates it with row or column data.'
+    },
+    {
+      id: 'h30', topic: 'Forms', difficulty: 2,
+      title: 'Choose Where Form Data Goes',
+      snippet: `<form ___="/signup" method="post">\n  <button type="submit">Sign up</button>\n</form>`,
+      options: ['href', 'action', 'src', 'destination'],
+      answer: 1,
+      explanation: 'The action attribute specifies the URL that receives the submitted form data.'
+    },
+    {
+      id: 'h31', topic: 'Text', difficulty: 1,
+      title: 'Break a Line',
+      snippet: `<p>First line<___>Second line</p>`,
+      options: ['hr', 'br', 'newline', 'break'],
+      answer: 1,
+      explanation: '&lt;br&gt; creates a line break within text.'
+    },
+    {
+      id: 'h32', topic: 'Head', difficulty: 2,
+      title: 'Connect a CSS File',
+      snippet: `<link rel="stylesheet" ___="theme.css">`,
+      options: ['src', 'href', 'file', 'url'],
+      answer: 1,
+      explanation: 'The href attribute on a stylesheet link points to the CSS file.'
+    },
+    {
+      id: 'h33', topic: 'Lists', difficulty: 1,
+      title: 'Numbered Steps',
+      snippet: `<___>\n  <li>Mix ingredients</li>\n  <li>Bake the cake</li>\n</___>`,
+      options: ['ul', 'ol', 'list', 'dl'],
+      answer: 1,
+      explanation: '&lt;ol&gt; marks a list where the sequence of items matters.'
+    },
+    {
+      id: 'h34', topic: 'Forms', difficulty: 1,
+      title: 'Hide Password Characters',
+      snippet: `<input name="password" type="___">`,
+      options: ['hidden', 'password', 'secret', 'private'],
+      answer: 1,
+      explanation: 'type="password" masks the characters entered into the field.'
+    },
+    {
+      id: 'h35', topic: 'Document Structure', difficulty: 1,
+      title: 'Visible Page Content',
+      snippet: `<html>\n  <head><title>Notes</title></head>\n  <___><p>My notes</p></___>\n</html>`,
+      options: ['main', 'body', 'content', 'page'],
+      answer: 1,
+      explanation: 'The body element contains the document content displayed in the browser.'
+    },
+    {
+      id: 'h36', topic: 'Semantic', difficulty: 2,
+      title: 'Primary Content Area',
+      snippet: `<body>\n  <header>My blog</header>\n  <___><article>Latest post</article></___>\n</body>`,
+      options: ['section', 'main', 'content', 'article'],
+      answer: 1,
+      explanation: '&lt;main&gt; identifies the primary content of the document.'
+    },
+    {
+      id: 'h37', topic: 'Attributes', difficulty: 1,
+      title: 'Identify a Unique Element',
+      snippet: `<section ___="about-me">\n  <h2>About me</h2>\n</section>`,
+      options: ['class', 'id', 'name', 'key'],
+      answer: 1,
+      explanation: 'The id attribute gives an element a unique identifier within the page.'
+    },
+    {
+      id: 'h38', topic: 'Text', difficulty: 2,
+      title: 'Mark Important Text',
+      snippet: `<p><___>Wear a helmet</___> while riding.</p>`,
+      options: ['b', 'strong', 'em', 'important'],
+      answer: 1,
+      explanation: '&lt;strong&gt; gives its text strong importance, not just a bold appearance.'
+    },
+    {
+      id: 'h39', topic: 'Head', difficulty: 2,
+      title: 'Set Character Encoding',
+      snippet: `<meta ___="UTF-8">`,
+      options: ['encoding', 'charset', 'type', 'language'],
+      answer: 1,
+      explanation: 'The charset attribute declares the document character encoding, commonly UTF-8.'
+    },
+    {
+      id: 'h40', topic: 'Dividers', difficulty: 1,
+      title: 'Separate Related Topics',
+      snippet: `<h2>Morning</h2>\n<p>Breakfast and a walk.</p>\n<___>\n<h2>Evening</h2>`,
+      options: ['br', 'hr', 'line', 'separator'],
+      answer: 1,
+      explanation: '&lt;hr&gt; represents a thematic break between paragraph-level sections.'
+    }
+  ],
+  css: [
+    {
+      id: 'c21', topic: 'Color', difficulty: 1,
+      title: 'Change Text Color',
+      snippet: `.notice {\n  ___: darkgreen;\n}`,
+      options: ['background', 'color', 'font-color', 'text'],
+      answer: 1,
+      explanation: 'The color property sets the foreground color of an element’s text.'
+    },
+    {
+      id: 'c22', topic: 'Background', difficulty: 1,
+      title: 'Fill a Card Background',
+      snippet: `.card {\n  ___: #f0f4f8;\n}`,
+      options: ['color', 'background-color', 'fill', 'background-fill'],
+      answer: 1,
+      explanation: 'background-color sets the background fill behind an element’s content.'
+    },
+    {
+      id: 'c23', topic: 'Typography', difficulty: 1,
+      title: 'Make a Heading Bold',
+      snippet: `h2 {\n  ___: 700;\n}`,
+      options: ['font-style', 'font-weight', 'text-weight', 'bold'],
+      answer: 1,
+      explanation: 'font-weight controls how bold or light text appears.'
+    },
+    {
+      id: 'c24', topic: 'Layout', difficulty: 2,
+      title: 'Create a Flex Container',
+      snippet: `.toolbar {\n  display: ___;\n  gap: 12px;\n}`,
+      options: ['grid', 'flex', 'inline', 'flow'],
+      answer: 1,
+      explanation: 'display: flex creates a flex container for arranging its child items.'
+    },
+    {
+      id: 'c25', topic: 'Box Model', difficulty: 1,
+      title: 'Space Inside a Panel',
+      snippet: `.panel {\n  ___: 24px;\n  border: 1px solid gray;\n}`,
+      options: ['margin', 'padding', 'gap', 'inset'],
+      answer: 1,
+      explanation: 'Padding adds space between an element’s content and its border.'
+    },
+    {
+      id: 'c26', topic: 'Box Model', difficulty: 1,
+      title: 'Space Outside a Panel',
+      snippet: `.panel {\n  ___: 16px auto;\n  max-width: 500px;\n}`,
+      options: ['padding', 'margin', 'gap', 'spacing'],
+      answer: 1,
+      explanation: 'Margin creates space outside the border; auto side margins can center a block.'
+    },
+    {
+      id: 'c27', topic: 'Borders', difficulty: 1,
+      title: 'Round a Card Corner',
+      snippet: `.card {\n  ___: 10px;\n}`,
+      options: ['corner-shape', 'border-radius', 'border-style', 'rounding'],
+      answer: 1,
+      explanation: 'border-radius rounds the corners of an element’s border box.'
+    },
+    {
+      id: 'c28', topic: 'Typography', difficulty: 1,
+      title: 'Set Paragraph Text Size',
+      snippet: `p {\n  ___: 1.125rem;\n}`,
+      options: ['text-size', 'font-size', 'font', 'size'],
+      answer: 1,
+      explanation: 'font-size sets the size of text. rem units are relative to the root font size.'
+    },
+    {
+      id: 'c29', topic: 'Dimensions', difficulty: 1,
+      title: 'Set a Container Width',
+      snippet: `.content {\n  ___: 90%;\n  max-width: 70rem;\n}`,
+      options: ['max-size', 'width', 'length', 'inline-size-limit'],
+      answer: 1,
+      explanation: 'width sets an element’s width; max-width can prevent it from growing too large.'
+    },
+    {
+      id: 'c30', topic: 'Interaction', difficulty: 2,
+      title: 'Show a Clickable Cursor',
+      snippet: `.button:hover {\n  ___: pointer;\n}`,
+      options: ['mouse', 'cursor', 'pointer-style', 'hover'],
+      answer: 1,
+      explanation: 'cursor: pointer shows the familiar hand cursor over an interactive element.'
+    },
+    {
+      id: 'c31', topic: 'Flexbox', difficulty: 2,
+      title: 'Center Flex Items',
+      snippet: `.actions {\n  display: flex;\n  justify-content: ___;\n}`,
+      options: ['middle', 'center', 'align-center', 'space-center'],
+      answer: 1,
+      explanation: 'justify-content: center centers flex items along the main axis.'
+    },
+    {
+      id: 'c32', topic: 'Typography', difficulty: 1,
+      title: 'Choose a Font Stack',
+      snippet: `body {\n  ___: "Verdana", sans-serif;\n}`,
+      options: ['font-style', 'font-family', 'typeface', 'font-name'],
+      answer: 1,
+      explanation: 'font-family sets the typeface and can include fallback fonts.'
+    },
+    {
+      id: 'c33', topic: 'Effects', difficulty: 2,
+      title: 'Add Depth to a Card',
+      snippet: `.card {\n  ___: 0 2px 10px rgba(0, 0, 0, 0.15);\n}`,
+      options: ['text-shadow', 'box-shadow', 'drop-shadow', 'shadow'],
+      answer: 1,
+      explanation: 'box-shadow draws a shadow around an element’s box.'
+    },
+    {
+      id: 'c34', topic: 'Animation', difficulty: 2,
+      title: 'Animate a Hover Change',
+      snippet: `.button {\n  ___: transform 180ms ease;\n}`,
+      options: ['animation', 'transition', 'transform', 'motion'],
+      answer: 1,
+      explanation: 'transition smoothly animates changes to the listed CSS property.'
+    },
+    {
+      id: 'c35', topic: 'Typography', difficulty: 1,
+      title: 'Center Text',
+      snippet: `.welcome {\n  ___: center;\n}`,
+      options: ['align', 'text-align', 'justify-content', 'text-position'],
+      answer: 1,
+      explanation: 'text-align: center centers inline content such as text inside its block.'
+    },
+    {
+      id: 'c36', topic: 'Positioning', difficulty: 2,
+      title: 'Place a Dialog Above Content',
+      snippet: `.dialog {\n  position: fixed;\n  ___: 50;\n}`,
+      options: ['layer', 'z-index', 'stack-order', 'position-index'],
+      answer: 1,
+      explanation: 'z-index controls stacking order for positioned elements.'
+    },
+    {
+      id: 'c37', topic: 'Text', difficulty: 1,
+      title: 'Remove a Link Underline',
+      snippet: `a {\n  ___: none;\n}`,
+      options: ['underline', 'text-decoration', 'font-decoration', 'link-style'],
+      answer: 1,
+      explanation: 'text-decoration controls decorations such as underlines on text.'
+    },
+    {
+      id: 'c38', topic: 'Effects', difficulty: 1,
+      title: 'Make an Overlay See-Through',
+      snippet: `.overlay {\n  ___: 0.6;\n}`,
+      options: ['visibility', 'opacity', 'transparency', 'alpha'],
+      answer: 1,
+      explanation: 'opacity controls how transparent an element and its contents appear.'
+    },
+    {
+      id: 'c39', topic: 'Positioning', difficulty: 3,
+      title: 'Position a Badge Against Its Container',
+      snippet: `.badge {\n  position: ___;\n  top: 0;\n  right: 0;\n}`,
+      options: ['fixed', 'absolute', 'relative', 'sticky'],
+      answer: 1,
+      explanation: 'position: absolute removes the element from normal flow and positions it against its containing block.'
+    },
+    {
+      id: 'c40', topic: 'Layout', difficulty: 2,
+      title: 'Add Space Between Navigation Items',
+      snippet: `.navigation {\n  display: flex;\n  ___: 1rem;\n}`,
+      options: ['margin', 'gap', 'padding', 'space'],
+      answer: 1,
+      explanation: 'gap sets spacing between items in flex and grid containers.'
+    }
+  ],
+  javascript: [
+    {
+      id: 'j21', topic: 'Constants', difficulty: 1,
+      title: 'Declare a Constant',
+      snippet: `___ TAX_RATE = 0.08;\nconsole.log(TAX_RATE);`,
+      options: ['let', 'const', 'fixed', 'static'],
+      answer: 1,
+      explanation: 'const declares a block-scoped binding that cannot be reassigned.'
+    },
+    {
+      id: 'j22', topic: 'Comments', difficulty: 1,
+      title: 'Write a Single-Line Comment',
+      snippet: `___ Save the user's score\nlet score = 0;`,
+      options: ['**', '//', '<!--', '#'],
+      answer: 1,
+      explanation: 'Two forward slashes begin a single-line JavaScript comment.'
+    },
+    {
+      id: 'j23', topic: 'Console', difficulty: 1,
+      title: 'Print a Value',
+      snippet: `const city = "Oslo";\nconsole.___(city);`,
+      options: ['write', 'log', 'print', 'show'],
+      answer: 1,
+      explanation: 'console.log() writes a value to the developer console.'
+    },
+    {
+      id: 'j24', topic: 'DOM', difficulty: 1,
+      title: 'Find an Element by ID',
+      snippet: `const result = document.___("result");`,
+      options: ['queryById', 'getElementById', 'findElement', 'getByName'],
+      answer: 1,
+      explanation: 'getElementById() returns the element with the matching id.'
+    },
+    {
+      id: 'j25', topic: 'Operators', difficulty: 1,
+      title: 'Compare Without Type Conversion',
+      snippet: `if (answer ___ 42) {\n  console.log("Correct");\n}`,
+      options: ['==', '===', '=', '=>'],
+      answer: 1,
+      explanation: '=== tests strict equality, checking both value and type.'
+    },
+    {
+      id: 'j26', topic: 'Functions', difficulty: 2,
+      title: 'Arrow Function Syntax',
+      snippet: `const square = number ___ {\n  return number * number;\n};`,
+      options: ['->', '=>', '==', 'function=>'],
+      answer: 1,
+      explanation: 'The arrow token => separates an arrow function’s parameters from its body.'
+    },
+    {
+      id: 'j27', topic: 'Arrays', difficulty: 1,
+      title: 'Add to the End of an Array',
+      snippet: `const colors = ["blue", "green"];\ncolors.___("orange");`,
+      options: ['append', 'push', 'add', 'insert'],
+      answer: 1,
+      explanation: 'push() adds one or more items to the end of an array.'
+    },
+    {
+      id: 'j28', topic: 'Arrays', difficulty: 2,
+      title: 'Transform Every Array Item',
+      snippet: `const prices = [2, 4, 6];\nconst doubled = prices.___(price => price * 2);`,
+      options: ['filter', 'map', 'forEach', 'find'],
+      answer: 1,
+      explanation: 'map() creates a new array from the result of a function run on each item.'
+    },
+    {
+      id: 'j29', topic: 'DOM', difficulty: 1,
+      title: 'Replace an Element’s HTML',
+      snippet: `const panel = document.querySelector(".panel");\npanel.___ = "<em>Ready</em>";`,
+      options: ['textContent', 'innerHTML', 'htmlText', 'content'],
+      answer: 1,
+      explanation: 'innerHTML reads or replaces an element’s HTML markup.'
+    },
+    {
+      id: 'j30', topic: 'Events', difficulty: 1,
+      title: 'Listen for a Button Click',
+      snippet: `button.___("click", () => {\n  console.log("Clicked");\n});`,
+      options: ['on', 'addEventListener', 'listen', 'handleEvent'],
+      answer: 1,
+      explanation: 'addEventListener() registers a function to run when the specified event occurs.'
+    },
+    {
+      id: 'j31', topic: 'Variables', difficulty: 1,
+      title: 'Declare a Changing Counter',
+      snippet: `for (___ step = 0; step < 3; step++) {\n  console.log(step);\n}`,
+      options: ['const', 'let', 'fixed', 'static'],
+      answer: 1,
+      explanation: 'let declares a block-scoped variable that can be reassigned, as a loop counter must be.'
+    },
+    {
+      id: 'j32', topic: 'Arrays', difficulty: 1,
+      title: 'Count Items in an Array',
+      snippet: `const pets = ["dog", "cat"];\nconsole.log(pets.___);`,
+      options: ['size', 'length', 'count', 'items'],
+      answer: 1,
+      explanation: 'The length property gives the number of items in an array.'
+    },
+    {
+      id: 'j33', topic: 'Arrays', difficulty: 2,
+      title: 'Remove the Last Array Item',
+      snippet: `const tasks = ["read", "write"];\nconst lastTask = tasks.___();`,
+      options: ['shift', 'pop', 'remove', 'delete'],
+      answer: 1,
+      explanation: 'pop() removes and returns the last item in an array.'
+    },
+    {
+      id: 'j34', topic: 'Type Conversion', difficulty: 2,
+      title: 'Convert Text to an Integer',
+      snippet: `const ageText = "21";\nconst age = ___(ageText);`,
+      options: ['String', 'parseInt', 'parseText', 'toInteger'],
+      answer: 1,
+      explanation: 'parseInt() parses a string and returns an integer when it contains a valid number.'
+    },
+    {
+      id: 'j35', topic: 'Async', difficulty: 2,
+      title: 'Run Code After a Delay',
+      snippet: `___(() => {\n  console.log("Time is up");\n}, 1000);`,
+      options: ['setInterval', 'setTimeout', 'delay', 'wait'],
+      answer: 1,
+      explanation: 'setTimeout() schedules a function to run once after a delay in milliseconds.'
+    },
+    {
+      id: 'j36', topic: 'DOM', difficulty: 2,
+      title: 'Add a CSS Class',
+      snippet: `const notice = document.querySelector(".notice");\nnotice.classList.___("visible");`,
+      options: ['push', 'add', 'append', 'set'],
+      answer: 1,
+      explanation: 'classList.add() adds a class name to an element.'
+    },
+    {
+      id: 'j37', topic: 'JSON', difficulty: 2,
+      title: 'Convert an Object to JSON Text',
+      snippet: `const settings = { sound: true };\nconst text = JSON.___(settings);`,
+      options: ['parse', 'stringify', 'encode', 'toJSONText'],
+      answer: 1,
+      explanation: 'JSON.stringify() converts a JavaScript value to a JSON string.'
+    },
+    {
+      id: 'j38', topic: 'Types', difficulty: 1,
+      title: 'Check a Value’s Type',
+      snippet: `const temperature = 18;\nconsole.log(___ temperature);`,
+      options: ['type', 'typeof', 'instanceof', 'kind'],
+      answer: 1,
+      explanation: 'typeof returns a string describing the type of a value.'
+    },
+    {
+      id: 'j39', topic: 'Arrays', difficulty: 2,
+      title: 'Keep Matching Array Items',
+      snippet: `const scores = [40, 75, 90];\nconst passing = scores.___(score => score >= 70);`,
+      options: ['map', 'filter', 'reduce', 'every'],
+      answer: 1,
+      explanation: 'filter() creates an array containing only items that pass its test function.'
+    },
+    {
+      id: 'j40', topic: 'DOM', difficulty: 2,
+      title: 'Toggle a Menu Class',
+      snippet: `const menu = document.querySelector("#menu");\nmenu.___.toggle("open");`,
+      options: ['style', 'classList', 'classes', 'className'],
+      answer: 1,
+      explanation: 'classList.toggle() adds a class if absent or removes it if present.'
+    }
+  ]
+};
+
+const QUESTION_SET_REPEAT_COUNT = 2;
+const QUESTION_SET_COUNT = 2;
+
 // =============================================================
 //  Full Code Templates — one complete file per course
 //  Blanks are marked as {{1}} through {{20}}, matching question
-//  order in QUESTION_BANK. The player sees the WHOLE file and
-//  fills blanks in sequence from top to bottom.
+//  order in each course's question set. The player sees the WHOLE
+//  file and fills blanks in sequence from top to bottom.
 // =============================================================
 
 const FULL_TEMPLATES = {
@@ -784,8 +1276,9 @@ for (let i = 0; i < 5; i++) {
 };
 
 // ─── Get questions in template order (options randomized) ─────────────────────
-function getShuffledQuestions(course) {
-  const questions = JSON.parse(JSON.stringify(QUESTION_BANK[course])); // deep clone
+function getShuffledQuestions(course, setIndex = 0) {
+  const bank = setIndex === 1 ? ALTERNATE_QUESTION_BANK : QUESTION_BANK;
+  const questions = JSON.parse(JSON.stringify(bank[course])); // deep clone
 
   // Questions stay in order (1-20) to match the full template top-to-bottom.
   // Only shuffle the options within each question.
@@ -800,8 +1293,31 @@ function getShuffledQuestions(course) {
   });
 }
 
+function getNextQuestionSetIndex(course) {
+  const storageKey = `cc_completed_runs_${course}`;
+  const storedRuns = localStorage.getItem(storageKey);
+  const completedRuns = storedRuns === null ? 0 : Number(storedRuns);
+
+  if (!Number.isSafeInteger(completedRuns) || completedRuns < 0) {
+    throw new Error(`Invalid completed run count for ${course}.`);
+  }
+
+  return Math.floor(completedRuns / QUESTION_SET_REPEAT_COUNT) % QUESTION_SET_COUNT;
+}
+
+function recordQuestionSetRun(course) {
+  const storageKey = `cc_completed_runs_${course}`;
+  const storedRuns = localStorage.getItem(storageKey);
+  const completedRuns = storedRuns === null ? 0 : Number(storedRuns);
+
+  if (!Number.isSafeInteger(completedRuns) || completedRuns < 0) {
+    throw new Error(`Invalid completed run count for ${course}.`);
+  }
+
+  localStorage.setItem(storageKey, String(completedRuns + 1));
+}
+
 // Return the full template for a course
 function getFullTemplate(course) {
   return FULL_TEMPLATES[course] || null;
 }
-
