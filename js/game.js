@@ -24,6 +24,7 @@
     course:          '',
     playerName:      '',
     questions:       [],
+    questionSetRunRecorded: false,
     currentIndex:    0,
     score:           0,
     correctCount:    0,
@@ -597,6 +598,10 @@
     clearInterval(state.gameInterval);
     clearInterval(state.questionInterval);
     clearTimeout(state.brickTimeout);
+    if (!state.questionSetRunRecorded) {
+      recordQuestionSetRun(state.course);
+      state.questionSetRunRecorded = true;
+    }
     if (el.activeBrick) {
       el.activeBrick.style.transition = 'none';
     }
@@ -757,7 +762,8 @@
     }
 
     // Load questions and full code template
-    state.questions = getShuffledQuestions(course);
+    const questionSetIndex = getNextQuestionSetIndex(course);
+    state.questions = getShuffledQuestions(course, questionSetIndex);
     state.template  = getFullTemplate(course);
     state.filledBlanks = {};
     state.missedQuestions = [];
